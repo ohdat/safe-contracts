@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "hardhat compile",
+    "verify": "yarn hardhat  etherscan-verify --network",
     "build:ts": "yarn rimraf dist && tsc",
     "test": "hardhat test",
     "coverage": "hardhat coverage",
