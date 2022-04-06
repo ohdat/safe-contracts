@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: LGPL-3.0-only
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 
 import "./base/ModuleManager.sol";
@@ -55,12 +55,18 @@ contract GnosisSafe is
     // Mapping to keep track of all hashes (message or transaction) that have been approved by ANY owners
     mapping(address => mapping(bytes32 => uint256)) public approvedHashes;
 
+    string private _name;
     // This constructor ensures that this contract can only be used as a master copy for Proxy contracts
-    constructor() {
+    constructor(string memory name_) {
         // By setting the threshold it is not possible to call setup anymore,
         // so we create a Safe with 0 owners and threshold 1.
         // This is an unusable Safe, perfect for the singleton
         threshold = 1;
+        _name = name_;
+    }
+
+    function name() public view returns (string memory) {
+        return _name;
     }
 
     /// @dev Setup function sets initial storage of contract.
