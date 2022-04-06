@@ -56,12 +56,13 @@ contract GnosisSafe is
     mapping(address => mapping(bytes32 => uint256)) public approvedHashes;
 
     string private _name;
+
     // This constructor ensures that this contract can only be used as a master copy for Proxy contracts
     constructor(string memory name_) {
         // By setting the threshold it is not possible to call setup anymore,
         // so we create a Safe with 0 owners and threshold 1.
         // This is an unusable Safe, perfect for the singleton
-        threshold = 1;
+        threshold = 0;
         _name = name_;
     }
 
